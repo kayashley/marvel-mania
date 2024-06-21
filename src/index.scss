@@ -1,0 +1,9 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; // importing bootstrap
+
+$primary-color: black;
+$secondary-color: rgba(114, 23, 23, 0.445);
+
+.login-form {
+  color: $primary-color;
+  background-color: $secondary-color;
+}

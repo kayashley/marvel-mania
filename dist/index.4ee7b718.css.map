@@ -1,0 +1,1 @@
+{"mappings":"ACEA","sources":["index.4ee7b718.css","src/index.scss"],"sourcesContent":[".mcu-main {\n  color: #00f;\n}\n/*# sourceMappingURL=index.4ee7b718.css.map */\n","$color: blue;\r\n\r\n.mcu-main {\r\n  color: blue;\r\n}\r\n"],"names":[],"version":3,"file":"index.4ee7b718.css.map"}
