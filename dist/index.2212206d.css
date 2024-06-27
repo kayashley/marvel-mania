@@ -17,12 +17,48 @@ img {
   width: 100%;
 }
 
-.profile-card {
-  border: 1px solid red;
+.profile-container {
+  align-items: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
-.profile-title {
-  font-size: 24px;
+.profile-card, .form-card {
+  background: #fff;
+  border-radius: 4px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 1px 1px 2px 3px #85848438;
+}
+
+.profile-body, .form-body {
+  padding: 30px;
+}
+
+.profile-card {
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+.form-card {
+  width: 600px;
+}
+
+.form-header {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  display: grid;
+}
+
+.form-btn {
+  margin-top: 10px;
+}
+
+.active-card {
+  visibility: hidden;
 }
 
 html {

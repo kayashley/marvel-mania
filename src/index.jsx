@@ -1,4 +1,6 @@
 // moved import boostrap to index.scss for customization
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import { createRoot } from "react-dom/client"; // importing react-dom/client
 import { MainView } from "./components/main-view/main-view"; // importing MainView

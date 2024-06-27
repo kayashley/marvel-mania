@@ -1,7 +1,56 @@
-.profile-card {
-  border: 1px solid red;
+// CONTAINER HOLDING BOTH CARDS
+.profile-container {
+  // border: 1px solid blue;
+
+  max-width: 1000px;
+  position: relative;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.profile-title {
-  font-size: 24px;
+.profile-card,
+.form-card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 3px rgba(133, 132, 132, 0.219);
+
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-body,
+.form-body {
+  padding: 30px;
+}
+
+// PROFILE CARD
+.profile-card {
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+// FORM
+.form-card {
+  width: 600px;
+}
+
+.form-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.form-btn {
+  margin-top: 10px;
+}
+
+// TOGGLE FORM
+.active-card {
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
 }
