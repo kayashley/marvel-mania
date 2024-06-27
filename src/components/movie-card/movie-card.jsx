@@ -2,25 +2,25 @@
 // displays list of all movies in its own card
 
 import PropTypes from "prop-types";
+// importing react bootstrap
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom"; // importing Link
 
-export const MovieCard = ({ movieData, onMovieClick }) => {
+export const MovieCard = ({ movieData }) => {
   return (
-    <Card
-      className="h-100"
-      onClick={() => onMovieClick(movieData)}
-      style={{ cursor: "pointer" }}
-    >
-      <Card.Img className="w-100" variant="top" src={movieData.Image} />
-      <Card.Body>
-        <Card.Title>{movieData.Name}</Card.Title>
-      </Card.Body>
-    </Card>
+    <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
+      <Card className="h-100" style={{ cursor: "pointer" }}>
+        <Card.Img className="w-100" variant="top" src={movieData.Image} />
+        <Card.Body>
+          <Card.Title>{movieData.Name}</Card.Title>
+        </Card.Body>
+      </Card>
+    </Link>
   );
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
+  movieData: PropTypes.shape({
     Name: PropTypes.string.isRequired,
     Image: PropTypes.string.isRequired,
     Director: PropTypes.shape({
@@ -30,5 +30,4 @@ MovieCard.propTypes = {
       Name: PropTypes.string.isRequired,
     }),
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };

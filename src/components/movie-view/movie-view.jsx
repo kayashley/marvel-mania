@@ -1,30 +1,38 @@
 // ../movie-view/movie-view.jsx
 // displays information of each movie
 
-import "./movie-view.scss";
+// importing react bootstrap
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+// importing routing
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import "./movie-view.scss"; // importing movie-view.scss
 
-export const MovieView = ({ movieData, onBackClick }) => {
+export const MovieView = ({ movieData }) => {
+  const { movieId } = useParams();
+
+  const movie = movieData.find((m) => m._id === movieId);
   return (
     <>
       <Container>
         <Row>
           <Col>
             <Card>
-              <Card.Img className="w-100" src={movieData.Image} />
+              <Card.Img className="w-100" src={movie.Image} />
               <Card.Body>
-                <Card.Title>{movieData.Name}</Card.Title>
-                <Card.Text>Director(s): </Card.Text>
-                <Card.Text>Genre(s): </Card.Text>
-                <Card.Text>Runtime: </Card.Text>
-                <Card.Text>Description: </Card.Text>
+                <Card.Title>{movie.Name}</Card.Title>
+                <Card.Text>{movie.Rating}</Card.Text>
+                <Card.Text>Runtime: {movie.Runtime}</Card.Text>
+                <Card.Text>{movie.Synopsis}</Card.Text>
+                <Card.Text>Director(s): {movie.Directors}</Card.Text>
+                <Card.Text>Genre(s): {movie.Genres}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-        <Button className="back-button" onClick={onBackClick}>
-          Back
-        </Button>
+        <Link to={`/`}>
+          <Button className="back-button">Back</Button>
+        </Link>
       </Container>
     </>
   );

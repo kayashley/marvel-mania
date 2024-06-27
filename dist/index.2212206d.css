@@ -17,6 +17,14 @@ img {
   width: 100%;
 }
 
+.profile-card {
+  border: 1px solid red;
+}
+
+.profile-title {
+  font-size: 24px;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
