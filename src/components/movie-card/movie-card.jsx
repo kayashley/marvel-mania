@@ -6,16 +6,25 @@ import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom"; // importing Link
 
+// import scss
+import "./movie-card.scss";
+
 export const MovieCard = ({ movieData }) => {
   return (
-    <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
-      <Card className="h-100" style={{ cursor: "pointer" }}>
-        <Card.Img className="w-100" variant="top" src={movieData.Image} />
+    <Card className="h-100 movie-card" style={{ cursor: "pointer" }}>
+      <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
+        <Card.Img
+          className="w-100 card-image"
+          variant="top"
+          src={movieData.Image}
+        />
         <Card.Body>
-          <Card.Title>{movieData.Name}</Card.Title>
+          <Card.Title>
+            <h4>{movieData.Name}</h4>
+          </Card.Title>
         </Card.Body>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };
 

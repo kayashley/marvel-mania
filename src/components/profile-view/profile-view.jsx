@@ -8,12 +8,13 @@ import { Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
 import "./profile-view.scss";
 
 export const ProfileView = ({ user, token, setUser }) => {
-  const [username, setUsername] = useState(user.Username);
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(user.Email);
-  const [birthday, setBirthday] = useState(user.Birthday);
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [username, setUsername] = useState(user.Username); // set username to user data
+  const [password, setPassword] = useState(""); // set password to empty string
+  const [email, setEmail] = useState(user.Email); // set email to user data
+  const [birthday, setBirthday] = useState(user.Birthday); // set username to user data
+  const [isFormVisible, setIsFormVisible] = useState(false); // sets isFormVisible to false
 
+  // submits form
   const handleSubmit = (event) => {
     event.preventDefault(); // prevents from reloading page
 
@@ -27,6 +28,7 @@ export const ProfileView = ({ user, token, setUser }) => {
       data["Password"] = password;
     }
 
+    // fetches user data from api
     fetch(
       `https://mcumarvel-c028170c1f00.herokuapp.com/users/${user.Username}`,
       {
@@ -39,13 +41,16 @@ export const ProfileView = ({ user, token, setUser }) => {
       }
     )
       .then((response) => {
+        // if response matches, then return new changes
         if (response.ok) {
           alert("Successfully saved changes!");
           return response.json();
+          // fails, send message
         } else {
           alert("Update failed. Please try again.");
         }
       })
+
       .then((data) => {
         if (data) {
           localStorage.setItem("user", JSON.stringify(data));
@@ -54,6 +59,7 @@ export const ProfileView = ({ user, token, setUser }) => {
       });
   };
 
+  // toggles form visibility
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
@@ -62,6 +68,7 @@ export const ProfileView = ({ user, token, setUser }) => {
     <div className="profile-container">
       <Row>
         <Col>
+          {/* profile card */}
           <Card className="profile-card">
             <Card.Body className="profile-body">
               <Card.Header>
@@ -78,7 +85,7 @@ export const ProfileView = ({ user, token, setUser }) => {
               </Card.Text>
               <Card.Text>
                 <strong>Birthday: </strong>
-                {new Date(user.Birthday).toDateString()}
+                {new Date(user.Birthday).toISOString().slice(0, 10)}
               </Card.Text>
               <Button variant="primary" onClick={toggleFormVisibility}>
                 Edit Profile
@@ -86,6 +93,7 @@ export const ProfileView = ({ user, token, setUser }) => {
             </Card.Body>
           </Card>
 
+          {/* edit profile card */}
           {isFormVisible && (
             <Card className="form-card mt-3">
               <Card.Body className="form-body">

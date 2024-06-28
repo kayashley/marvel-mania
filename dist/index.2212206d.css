@@ -1,9 +1,45 @@
+@import "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap";
 /*!
  * Bootstrap v3.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+.card {
+  color: #d42f3a;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 18px #7a45454d, 0 17px 50px #6636364d;
+}
+
+.card:hover {
+  box-shadow: 0 10px 18px #dd32324d, 0 17px 50px #ee33334d;
+}
+
+a, .card a {
+  color: #e60b1a;
+  text-decoration: none !important;
+}
+
+a, .card a:hover {
+  color: #ec2835;
+}
+
+.card .card-img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.card-title {
+  text-align: center;
+  padding: 5px;
+}
+
+img {
+  border-radius: 6px;
+}
+
 .back-button {
   color: #f5f5f5;
   cursor: pointer;
@@ -15,6 +51,11 @@
 
 img {
   width: 100%;
+}
+
+.nav {
+  background-color: #fff;
+  border: 1px solid #00f;
 }
 
 .profile-container {
@@ -7050,8 +7091,28 @@ button.close {
   }
 }
 
-.login-form {
-  color: #000;
-  background-color: #72171771;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: #fff;
+  height: 100%;
+  font-family: Open Sans, sans-serif;
+}
+
+.nav-header {
+  color: #c2424b;
+  font-size: 38px;
+}
+
+.navbar-container {
+  color: #c2424b;
+}
+
+.nav {
+  background-color: #fff;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

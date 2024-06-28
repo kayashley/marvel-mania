@@ -10,7 +10,7 @@ import "./index.scss"; // import statement to bundle ./index.scss
 // main component
 const MCUApplication = () => {
   return (
-    <Container>
+    <Container className="app-container">
       <MainView />
     </Container>
   );

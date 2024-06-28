@@ -1,15 +1,18 @@
 // ../nav-bar/nav-bar.jsx
 
 // importing react bootstrap
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Img } from "react-bootstrap";
 // importing state based router
 import { Link } from "react-router-dom";
 
+// import scss
+import "./nav-bar.scss";
+
 export const NavBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar>
+    <Navbar className="navbar-container">
       <Container>
-        <Navbar.Brand>Marvel Mania</Navbar.Brand>
+        <Navbar.Brand className="nav-header">Marvel Mania</Navbar.Brand>
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         <Navbar.Collapse>
           <Nav>

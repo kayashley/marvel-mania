@@ -144,8 +144,9 @@ export const MainView = () => {
               ) : (
                 <Col md={5}>
                   <LoginView
-                    onLoggedIn={(user) => {
+                    onLoggedIn={(user, token) => {
                       setUser(user);
+                      setToken(token);
                     }}
                   />
                 </Col>
@@ -175,7 +176,7 @@ export const MainView = () => {
               !user ? (
                 <Navigate to="/login" replace />
               ) : (
-                <ProfileView user={user} token={token} setUser={user} />
+                <ProfileView user={user} token={token} setUser={setUser} />
               )
             }
           />

@@ -1,9 +1,32 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; // importing bootstrap
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
-$primary-color: black;
-$secondary-color: rgba(114, 23, 23, 0.445);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-.login-form {
-  color: $primary-color;
-  background-color: $secondary-color;
+/* Set the background color for the entire application */
+html,
+body {
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  // background-color: rgb(240, 231, 231);
+  // background-color: #e12835;
+  font-family: "Open Sans", sans-serif;
+}
+
+// navBar
+.nav-header {
+  font-size: 38px;
+  color: #c2424b;
+}
+
+.navbar-container {
+  color: #c2424b;
+}
+
+.nav {
+  background-color: white;
 }
