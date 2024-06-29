@@ -176,7 +176,12 @@ export const MainView = () => {
               !user ? (
                 <Navigate to="/login" replace />
               ) : (
-                <ProfileView user={user} token={token} setUser={setUser} />
+                <ProfileView
+                  movieData={movies}
+                  user={user}
+                  token={token}
+                  setUser={setUser}
+                />
               )
             }
           />

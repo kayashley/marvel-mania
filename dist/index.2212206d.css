@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap";
 /*!
  * Bootstrap v3.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 Twitter, Inc.
@@ -31,13 +31,32 @@ a, .card a:hover {
   width: 100%;
 }
 
-.card-title {
-  text-align: center;
-  padding: 5px;
-}
-
 img {
   border-radius: 6px;
+}
+
+.movie-card {
+  grid-template-columns: 1fr auto;
+  justify-content: center;
+  padding-left: 20px;
+  display: grid !important;
+}
+
+.fav-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 24px;
+  top: 10px;
+  right: 10px;
+  color: #c24246 !important;
+  font-size: 32px !important;
+  text-decoration: none !important;
+}
+
+.fav-btn:hover {
+  color: #f66 !important;
+  text-decoration: none !important;
 }
 
 .back-button {
@@ -54,8 +73,28 @@ img {
 }
 
 .nav {
-  background-color: #fff;
+  background-color: #df3232;
   border: 1px solid #00f;
+}
+
+.navbar-container {
+  padding-top: 15px;
+  padding-bottom: 25px;
+  display: flex;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-header {
+  color: #c2424b;
+  font-optical-sizing: auto;
+  font-family: Oswald, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px !important;
 }
 
 .profile-container {
@@ -7098,21 +7137,10 @@ button.close {
 }
 
 html, body {
+  font-family: sans-serif;
+  font-weight: 200;
+  font-style: light;
   background-color: #fff;
   height: 100%;
-  font-family: Open Sans, sans-serif;
-}
-
-.nav-header {
-  color: #c2424b;
-  font-size: 38px;
-}
-
-.navbar-container {
-  color: #c2424b;
-}
-
-.nav {
-  background-color: #fff;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

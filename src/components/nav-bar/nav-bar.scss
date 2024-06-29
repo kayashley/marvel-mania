@@ -1,4 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
 .nav {
   border: 1px solid blue;
-  background-color: white;
+  background-color: rgb(223, 50, 50);
+}
+
+.navbar-container {
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+}
+
+.nav-header {
+  font-size: 40px !important;
+  color: #c2424b;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }

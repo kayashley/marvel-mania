@@ -12,6 +12,7 @@ export const MovieView = ({ movieData }) => {
   const { movieId } = useParams();
 
   const movie = movieData.find((m) => m._id === movieId);
+
   return (
     <>
       <Container>

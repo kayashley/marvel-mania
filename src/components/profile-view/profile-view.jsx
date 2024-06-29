@@ -1,18 +1,25 @@
 // ../profile-view/profile-view.jsx
 
-// Importing react bootstrap
+import PropTypes from "prop-types";
+
+// importing react bootstrap
 import { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
 
-// Importing scss
+// importing scss
 import "./profile-view.scss";
 
-export const ProfileView = ({ user, token, setUser }) => {
+export const ProfileView = ({ movieData, user, token, setUser }) => {
   const [username, setUsername] = useState(user.Username); // set username to user data
   const [password, setPassword] = useState(""); // set password to empty string
   const [email, setEmail] = useState(user.Email); // set email to user data
   const [birthday, setBirthday] = useState(user.Birthday); // set username to user data
   const [isFormVisible, setIsFormVisible] = useState(false); // sets isFormVisible to false
+
+  // array of users favortie movies
+  let favMovies = movieData.filter((m) => {
+    return user.FavoriteMovies.includes(m._id);
+  });
 
   // submits form
   const handleSubmit = (event) => {
@@ -158,6 +165,23 @@ export const ProfileView = ({ user, token, setUser }) => {
           )}
         </Col>
       </Row>
+
+      <Row>
+        <h4>Favorite Movies</h4>
+        {favMovies.length === 0 && <p>No movies added</p>}
+        {favMovies.map((movie) => (
+          <Col className="mb-4" key={movie._id} xs={6} md={3}>
+            <MovieCard movieData={movie} />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
+};
+
+ProfileView.propTypes = {
+  movieData: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
