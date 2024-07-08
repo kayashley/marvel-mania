@@ -118,8 +118,8 @@ img {
 }
 
 .nav-main {
-  padding-bottom: 20px;
   display: flex;
+  margin-bottom: 50px !important;
 }
 
 @media (width <= 768px) {
