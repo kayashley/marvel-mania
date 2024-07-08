@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap";
 /*!
  * Bootstrap v3.4.1 (https://getbootstrap.com/)
@@ -5,20 +7,21 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-.card {
-  color: #d42f3a;
+.movie-card {
+  color: #892a2a;
   background-color: #fff;
   border-radius: 8px;
   margin-bottom: 30px;
+  font-family: Roboto Condensed;
   box-shadow: 0 10px 18px #7a45454d, 0 17px 50px #6636364d;
 }
 
-.card:hover {
+.movie-card:hover {
   box-shadow: 0 10px 18px #dd32324d, 0 17px 50px #ee33334d;
 }
 
 a, .card a {
-  color: #e60b1a;
+  color: #892a2a;
   text-decoration: none !important;
 }
 
@@ -35,7 +38,7 @@ img {
   border-radius: 6px;
 }
 
-.movie-card {
+.movie-body {
   grid-template-columns: 1fr auto;
   justify-content: center;
   padding-left: 20px;
@@ -49,14 +52,53 @@ img {
   font-size: 24px;
   top: 10px;
   right: 10px;
-  color: #c24246 !important;
-  font-size: 32px !important;
+  color: #892a2a !important;
+  font-size: 26px !important;
   text-decoration: none !important;
 }
 
 .fav-btn:hover {
-  color: #f66 !important;
+  color: #ec2835 !important;
   text-decoration: none !important;
+}
+
+.detail-container {
+  color: #641c1c;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 100%;
+  margin: 0 40px 40px;
+  padding: 30px;
+  display: flex;
+}
+
+.image-card, .detail-card {
+  border-radius: 4px;
+  width: 40%;
+  height: 50%;
+  margin: 20px;
+  box-shadow: 1px 1px 2px 3px #85848438;
+}
+
+.detail-card {
+  width: 50%;
+  padding: 20px;
+}
+
+.header-container {
+  border: 1px solid green;
+  grid-template-columns: 3fr auto;
+  display: grid;
+}
+
+.detail-header {
+  border: 1px solid #00f;
+}
+
+.detail-title {
+  font-family: Oswald, sans serif !important;
+  font-size: 56px !important;
 }
 
 .back-button {
@@ -72,20 +114,27 @@ img {
   width: 100%;
 }
 
-.nav {
-  background-color: #df3232;
-  border: 1px solid #00f;
+.nav-main {
+  padding-bottom: 20px;
+  display: flex;
 }
 
-.navbar-container {
-  padding-top: 15px;
-  padding-bottom: 25px;
+@media (width <= 768px) {
+  .nav-container {
+    width: 100%;
+  }
+}
+
+.nav-container {
+  border: 1px solid #00f;
   display: flex;
+  color: #000 !important;
 }
 
 .logo {
   width: 50px;
   height: 50px;
+  margin-right: 15px;
 }
 
 .nav-header {
@@ -97,7 +146,42 @@ img {
   font-size: 40px !important;
 }
 
+.nav-toggle {
+  cursor: pointer;
+  background: #b1aeae3b;
+  border: 1px solid #686666a2;
+  border-radius: 4px;
+  width: 30px;
+  margin: 5px;
+}
+
+.nav-menu {
+  justify-content: flex-end;
+  align-items: center;
+  width: 300px;
+  height: 100%;
+  font-family: Oswald, sans serif;
+  font-weight: 200;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.nav-link {
+  padding-right: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #892a2a !important;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+  color: #2b0404 !important;
+}
+
 .profile-container {
+  color: #641c1c;
   align-items: center;
   max-width: 1000px;
   margin-left: auto;
@@ -111,7 +195,12 @@ img {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  font-size: 18px;
   box-shadow: 1px 1px 2px 3px #85848438;
+}
+
+.profile-header {
+  padding-bottom: 10px;
 }
 
 .profile-body, .form-body {
@@ -120,25 +209,66 @@ img {
 
 .profile-card {
   width: 400px;
+  height: 300px;
   margin-bottom: 30px;
+}
+
+.form-btn {
+  float: right;
+  background: #641c1c;
+  border: none;
+  outline: none;
+  margin-top: 5px;
+  display: flex;
+  position: relative;
+  color: #fff !important;
+  font-size: 16px !important;
+}
+
+.form-btn:hover {
+  background: #b42929 !important;
 }
 
 .form-card {
   width: 600px;
+  height: 430px;
 }
 
 .form-header {
   grid-template-columns: 1fr auto;
-  align-items: center;
+  padding-bottom: 10px;
   display: grid;
 }
 
-.form-btn {
-  margin-top: 10px;
+#update-btn {
+  margin-top: 15px;
 }
 
 .active-card {
   visibility: hidden;
+}
+
+.fav-container {
+  color: #892a2a;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Roboto Condensed;
+}
+
+.fav-header {
+  font-size: 30px;
+}
+
+.fav-body {
+  font-size: 20px;
+}
+
+@media (width <= 768px) {
+  .profile-card, .form-card {
+    width: 80%;
+  }
 }
 
 html {
@@ -7142,5 +7272,56 @@ html, body {
   font-style: light;
   background-color: #fff;
   height: 100%;
+  padding-top: 10px;
+}
+
+.login-card, .signup-card {
+  color: #641c1c;
+  border-radius: 4px;
+  width: 50%;
+  padding: 30px;
+  font-size: 18px;
+  transition: width .3s;
+  box-shadow: 1px 1px 2px 3px #85848438;
+}
+
+.login-container, .signup-container {
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 100%;
+  margin: 0 40px 40px;
+  padding: 30px;
+  display: flex;
+}
+
+.login-btn, .signup-btn, .back-btn {
+  background: #641c1c;
+  border: none;
+  outline: none;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #fff !important;
+}
+
+.login-btn:hover, .signup-btn:hover, .back-btn:hover {
+  color: #fff;
+  cursor: pointer;
+  background: #b42929;
+  border: none;
+}
+
+Button:focus {
+  outline: none !important;
+}
+
+@media (width <= 768px) {
+  .login-container, .signup-container {
+    width: 100%;
+  }
+
+  .login-card, .signup-card {
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=index.2212206d.css.map */

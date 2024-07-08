@@ -1,6 +1,9 @@
-.card {
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+.movie-card {
   // border: 1px solid blue;
-  color: #d42f3a;
+  color: #892a2a;
+  font-family: "Roboto Condensed";
   background-color: rgb(255, 255, 255);
   margin-bottom: 30px;
   border-radius: 8px;
@@ -9,7 +12,7 @@
     0 17px 50px 0 rgba(102, 54, 54, 0.3);
 }
 
-.card:hover {
+.movie-card:hover {
   box-shadow: 0 10px 18px 0 rgba(221, 50, 50, 0.3),
     0 17px 50px 0 rgba(238, 51, 51, 0.3);
 }
@@ -17,7 +20,7 @@
 a,
 .card a {
   text-decoration: none !important;
-  color: #e60b1a;
+  color: #892a2a;
 }
 
 a,
@@ -34,7 +37,7 @@ img {
   border-radius: 6px;
 }
 
-.movie-card {
+.movie-body {
   display: grid !important;
   grid-template-columns: 1fr auto;
   justify-content: center;
@@ -44,18 +47,19 @@ img {
 // FAVORITE BUTTON
 
 .fav-btn {
-  font-size: 32px !important;
+  font-size: 26px !important;
   top: 10px;
   right: 10px;
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #c24246 !important;
+  color: #892a2a !important;
   text-decoration: none !important;
 }
 
 .fav-btn:hover {
-  color: #ff6666 !important ;
+  color: #ec2835 !important;
+
   text-decoration: none !important;
 }

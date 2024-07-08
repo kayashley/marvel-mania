@@ -1,7 +1,6 @@
 // CONTAINER HOLDING BOTH CARDS
 .profile-container {
-  // border: 1px solid blue;
-
+  color: rgb(100, 28, 28);
   max-width: 1000px;
   position: relative;
   align-items: center;
@@ -12,12 +11,17 @@
 .profile-card,
 .form-card {
   background: white;
+  font-size: 18px;
   border-radius: 4px;
   box-shadow: 1px 1px 2px 3px rgba(133, 132, 132, 0.219);
 
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.profile-header {
+  padding-bottom: 10px;
 }
 
 .profile-body,
@@ -28,22 +32,42 @@
 // PROFILE CARD
 .profile-card {
   width: 400px;
+  height: 300px;
   margin-bottom: 30px;
+}
+
+// FORM BUTTONS
+.form-btn {
+  margin-top: 5px;
+  color: white !important;
+  font-size: 16px !important;
+  background: rgb(100, 28, 28);
+  border: none;
+  outline: none;
+
+  display: flex;
+  float: right;
+  position: relative;
+}
+
+.form-btn:hover {
+  background: #b42929 !important;
 }
 
 // FORM
 .form-card {
   width: 600px;
+  height: 430px;
 }
 
 .form-header {
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
+  padding-bottom: 10px;
 }
 
-.form-btn {
-  margin-top: 10px;
+#update-btn {
+  margin-top: 15px;
 }
 
 // TOGGLE FORM
@@ -53,4 +77,31 @@
 
 .hidden {
   display: none;
+}
+
+// FAVORITES
+.fav-container {
+  margin-top: 20px;
+  color: #892a2a;
+  font-family: "Roboto Condensed";
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fav-header {
+  font-size: 30px;
+}
+
+.fav-body {
+  font-size: 20px;
+}
+
+// MINIMIZED
+
+@media (max-width: 768px) {
+  .profile-card,
+  .form-card {
+    width: 80%;
+  }
 }

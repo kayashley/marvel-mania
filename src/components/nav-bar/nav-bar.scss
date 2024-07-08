@@ -1,19 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 
-.nav {
-  border: 1px solid blue;
-  background-color: rgb(223, 50, 50);
+.nav-main {
+  display: flex;
+  padding-bottom: 20px;
 }
 
-.navbar-container {
+@media (max-width: 768px) {
+  .nav-container {
+    width: 100%;
+    // height: 100%;
+  }
+}
+
+.nav-container {
+  color: black !important;
+  border: 1px solid blue;
   display: flex;
-  padding-top: 15px;
-  padding-bottom: 25px;
 }
 
 .logo {
   height: 50px;
   width: 50px;
+  margin-right: 15px;
 }
 
 .nav-header {
@@ -23,4 +31,41 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+}
+
+.nav-toggle {
+  width: 30px;
+  margin: 5px;
+  background: rgba(177, 174, 174, 0.23);
+  border: 1px solid rgba(104, 102, 102, 0.635);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: "Oswald", "sans serif";
+  font-weight: 200;
+
+  // border: 1px solid red;
+  width: 300px;
+  height: 100%;
+
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.nav-link {
+  color: #892a2a !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding-right: 20px;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+  color: rgb(43, 4, 4) !important;
 }

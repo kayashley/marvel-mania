@@ -78,7 +78,7 @@ export const ProfileView = ({ movieData, user, token, setUser }) => {
           {/* profile card */}
           <Card className="profile-card">
             <Card.Body className="profile-body">
-              <Card.Header>
+              <Card.Header className="profile-header">
                 <h3>Hi, {user.Username}</h3>
               </Card.Header>
               <Card.Text>Below are your account settings:</Card.Text>
@@ -94,7 +94,11 @@ export const ProfileView = ({ movieData, user, token, setUser }) => {
                 <strong>Birthday: </strong>
                 {new Date(user.Birthday).toISOString().slice(0, 10)}
               </Card.Text>
-              <Button variant="primary" onClick={toggleFormVisibility}>
+              <Button
+                className="form-btn"
+                variant=""
+                onClick={toggleFormVisibility}
+              >
                 Edit Profile
               </Button>
             </Card.Body>
@@ -156,7 +160,12 @@ export const ProfileView = ({ movieData, user, token, setUser }) => {
                       required
                     />
                   </Form.Group>
-                  <Button className="form-btn" variant="primary" type="submit">
+                  <Button
+                    id="update-btn"
+                    className="form-btn"
+                    variant=""
+                    type="submit"
+                  >
                     Update
                   </Button>
                 </Form>
@@ -166,12 +175,17 @@ export const ProfileView = ({ movieData, user, token, setUser }) => {
         </Col>
       </Row>
 
-      <Row>
-        <h4>Favorite Movies</h4>
-        {favMovies.length === 0 && <p>No movies added</p>}
+      <Row className="fav-container">
+        <h3 className="fav-header">Favorite Movies</h3>
+        {favMovies.length === 0 && <p className="fav-body">No movies added</p>}
         {favMovies.map((movie) => (
           <Col className="mb-4" key={movie._id} xs={6} md={3}>
-            <MovieCard movieData={movie} />
+            <MovieCard
+              movieData={movie}
+              user={user}
+              token={token}
+              setUser={setUser}
+            />
           </Col>
         ))}
       </Row>

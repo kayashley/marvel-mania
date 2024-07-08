@@ -9,11 +9,76 @@
 /* Set the background color for the entire application */
 html,
 body {
+  padding-top: 10px;
   height: 100%;
   background-color: rgb(255, 255, 255);
-  // background-color: rgb(240, 231, 231);
-  // background-color: #e12835;
   font-family: sans-serif;
   font-weight: 200;
   font-style: light;
+}
+
+.login-card,
+.signup-card {
+  font-size: 18px;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 3px rgba(133, 132, 132, 0.219);
+  color: rgb(100, 28, 28);
+  width: 50%;
+
+  transition: width 0.3s ease;
+  /* Smooth transition for resizing */
+}
+
+.login-container,
+.signup-container {
+  width: 1000px;
+  height: 100%;
+  margin: 0px 40px 40px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // border: 1px solid green;
+}
+
+.login-btn,
+.signup-btn,
+.back-btn {
+  color: white !important;
+  font-size: 16px;
+  margin-top: 15px;
+  background: rgb(100, 28, 28);
+  border: none;
+  outline: none;
+}
+
+.login-btn:hover,
+.signup-btn:hover,
+.back-btn:hover {
+  color: white;
+  background: #b42929;
+  border: none;
+  cursor: pointer;
+}
+
+Button:focus {
+  outline: none !important;
+}
+
+@media (max-width: 768px) {
+  .login-container,
+  .signup-container {
+    width: 100%;
+    // height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-card,
+  .signup-card {
+    width: 90%;
+    // height: 100%;
+  }
 }

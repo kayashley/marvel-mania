@@ -20,14 +20,14 @@ export const MovieCard = ({ movieData }) => {
   };
 
   return (
-    <Card className="h-100" style={{ cursor: "pointer" }}>
+    <Card className="h-100 movie-card" style={{ cursor: "pointer" }}>
       <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
         <Card.Img
-          className="w-100 card-image"
+          className="w-100 movie-image"
           variant="top"
           src={movieData.Image}
         />
-        <Card.Body className="movie-card">
+        <Card.Body className="movie-body">
           <Card.Title>
             <h4>{movieData.Name}</h4>
           </Card.Title>
@@ -36,6 +36,7 @@ export const MovieCard = ({ movieData }) => {
             onClick={handleFavoriteClick}
             variant="link"
           >
+            {/* unicode heart */}
             {isFavorite ? "\u2665" : "\u2661"}
           </Button>
         </Card.Body>
