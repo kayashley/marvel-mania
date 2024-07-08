@@ -23,20 +23,24 @@ export const MovieView = ({ movieData }) => {
             </Card>
 
             <Card className="detail-card">
-              <Card.Header className="detail-header">
+              <Card.Header className="detail-main">
                 <div className="header-container">
                   <Card.Title className="detail-title">
                     <h3>{movie.Name}</h3>
                   </Card.Title>
+                  <Card.Text>
+                    <em>{movie.Rating}</em>
+                  </Card.Text>
+                  <Card.Text>
+                    <em>{movie.Runtime}</em>
+                  </Card.Text>
                 </div>
-                <Card.Text>{movie.Rating}</Card.Text>
-                <Card.Text>Runtime: {movie.Runtime}</Card.Text>
               </Card.Header>
 
               <Card.Body>
                 <Card.Text>{movie.Synopsis}</Card.Text>
-                <Card.Text>Director(s): {movie.Directors}</Card.Text>
-                <Card.Text>Genre(s): XX</Card.Text>
+                <Card.Text>DIRECTORS</Card.Text>
+                <Card.Text>GENRES</Card.Text>
               </Card.Body>
               <Link to={`/`}>
                 <Button className="back-btn">Back</Button>

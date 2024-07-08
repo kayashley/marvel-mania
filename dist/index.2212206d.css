@@ -78,22 +78,25 @@ img {
   width: 40%;
   height: 50%;
   margin: 20px;
-  box-shadow: 1px 1px 2px 3px #85848438;
+}
+
+.image-card {
+  box-shadow: 0 10px 25px #dd32326e;
 }
 
 .detail-card {
   width: 50%;
   padding: 20px;
+  box-shadow: 1px 1px 2px 3px #85848438;
 }
 
 .header-container {
-  border: 1px solid green;
-  grid-template-columns: 3fr auto;
+  grid-template-columns: 1fr auto;
   display: grid;
 }
 
-.detail-header {
-  border: 1px solid #00f;
+.detail-main {
+  display: grid;
 }
 
 .detail-title {
@@ -126,7 +129,6 @@ img {
 }
 
 .nav-container {
-  border: 1px solid #00f;
   display: flex;
   color: #000 !important;
 }
@@ -241,7 +243,7 @@ img {
 }
 
 #update-btn {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .active-card {
@@ -7296,6 +7298,7 @@ html, body {
 }
 
 .login-btn, .signup-btn, .back-btn {
+  float: right;
   background: #641c1c;
   border: none;
   outline: none;
@@ -7311,16 +7314,23 @@ html, body {
   border: none;
 }
 
+.logo-container {
+  justify-content: center;
+  padding: 20px;
+  display: flex !important;
+}
+
+.login-logo {
+  width: 50%;
+  height: 50%;
+}
+
 Button:focus {
   outline: none !important;
 }
 
 @media (width <= 768px) {
-  .login-container, .signup-container {
-    width: 100%;
-  }
-
-  .login-card, .signup-card {
+  .login-container, .signup-container, .login-card, .signup-card {
     width: 90%;
   }
 }

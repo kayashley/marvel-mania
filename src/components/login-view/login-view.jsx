@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 
+import logo from "/img/hero.png";
+
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState(""); // sets username to string
   const [password, setPassword] = useState(""); // sets password to string
@@ -54,11 +56,15 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <div className="login-container">
       <Card className="h-100 login-card" md={4}>
+        <div className="logo-container">
+          <img className="login-logo" src={logo} />
+        </div>
         <Form onSubmit={handleSubmit} className="login-form">
           {/* Username field */}
           <Form.Group controlId="formUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
+              className="form-field"
               type="text"
               value={username}
               // listens for changes from the user onChange=
@@ -71,6 +77,7 @@ export const LoginView = ({ onLoggedIn }) => {
           <Form.Group controlId="formPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              className="form-field"
               type="password"
               value={password}
               // listens for changes from the user
