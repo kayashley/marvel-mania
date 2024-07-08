@@ -4,22 +4,18 @@ import PropTypes from "prop-types";
 
 // importing react bootstrap
 import { useState, useEffect } from "react";
-import { Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
+import { Row, Col, Card, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // importing scss
 import "./profile-view.scss";
 
-export const ProfileView = ({ movieData, user, token, setUser }) => {
+export const ProfileView = ({ movieData, user, token, setUser, favorites }) => {
   const [username, setUsername] = useState(user.Username); // set username to user data
   const [password, setPassword] = useState(""); // set password to empty string
   const [email, setEmail] = useState(user.Email); // set email to user data
   const [birthday, setBirthday] = useState(user.Birthday); // set username to user data
   const [isFormVisible, setIsFormVisible] = useState(false); // sets isFormVisible to false
-
-  // array of users favortie movies
-  let favMovies = movieData.filter((m) => {
-    return user.FavoriteMovies.includes(m._id);
-  });
 
   // submits form
   const handleSubmit = (event) => {
@@ -69,6 +65,31 @@ export const ProfileView = ({ movieData, user, token, setUser }) => {
   // toggles form visibility
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
+  };
+
+  const renderFavoriteMovies = () => {
+    return favorites.length > 0 ? (
+      favorites.map((movie) => (
+        <Col key={movie._id} md={3} className="mb-4">
+          <Card className="h-100 movie-card">
+            <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+              <Card.Img
+                className="w-100 movie-image"
+                variant="top"
+                src={movie.Image}
+              />
+              <Card.Body className="movie-body">
+                <Card.Title>
+                  <h4>{movie.Name}</h4>
+                </Card.Title>
+              </Card.Body>
+            </Link>
+          </Card>
+        </Col>
+      ))
+    ) : (
+      <Col className="fav-body">No favorite movies added!</Col>
+    );
   };
 
   return (
@@ -177,18 +198,8 @@ export const ProfileView = ({ movieData, user, token, setUser }) => {
 
       <Row className="fav-container">
         <h3 className="fav-header">Favorite Movies</h3>
-        {favMovies.length === 0 && <p className="fav-body">No movies added</p>}
-        {favMovies.map((movie) => (
-          <Col className="mb-4" key={movie._id} xs={6} md={3}>
-            <MovieCard
-              movieData={movie}
-              user={user}
-              token={token}
-              setUser={setUser}
-            />
-          </Col>
-        ))}
       </Row>
+      <Row className="fav-list">{renderFavoriteMovies()}</Row>
     </div>
   );
 };

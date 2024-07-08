@@ -3,6 +3,7 @@
 
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 // importing react bootstrap
 import { Card, Button } from "react-bootstrap";
@@ -11,12 +12,14 @@ import { Link } from "react-router-dom"; // importing Link
 // import scss
 import "./movie-card.scss";
 
-export const MovieCard = ({ movieData }) => {
-  const [isFavorite, setIsFavorite] = useState(false); // sets isFavorite false
+export const MovieCard = ({ movieData, toggleFavorite, favorites = [] }) => {
+  const isFavorite = favorites.some((fav) => fav._id === movieData._id);
 
+  // favorite movies
   const handleFavoriteClick = (e) => {
     e.preventDefault();
-    setIsFavorite(true);
+    console.log("favorite btn clicked");
+    toggleFavorite(movieData);
   };
 
   return (
@@ -47,6 +50,7 @@ export const MovieCard = ({ movieData }) => {
 
 MovieCard.propTypes = {
   movieData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     Name: PropTypes.string.isRequired,
     Image: PropTypes.string.isRequired,
     Director: PropTypes.shape({
@@ -56,4 +60,10 @@ MovieCard.propTypes = {
       Name: PropTypes.string.isRequired,
     }),
   }).isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

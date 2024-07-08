@@ -42,6 +42,8 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]); // movies is set to an array
   const [selectedMovie, setSelectedMovie] = useState(null); // selectedMovie is set to null
 
+  const [favorites, setFavorites] = useState([]); // sets favorites to an empty array
+
   // fetches api, promise
   useEffect(() => {
     // will not fetch if there's no token
@@ -64,6 +66,17 @@ export const MainView = () => {
     console.log("movies from api:", movies);
   }, [token]); // fetches whenever token changes
 
+  // toggles favorite movies
+  const toggleFavorite = (movie) => {
+    setFavorites((movies) => {
+      if (movies.find((fav) => fav._id === movie._id)) {
+        return movies.filter((fav) => fav._id !== movie._id);
+      } else {
+        return [...movies, movie];
+      }
+    });
+  };
+
   // organize movies into rows, 4 movies each
   const renderMovieRows = () => {
     const rows = []; // rows set to empty array
@@ -75,7 +88,11 @@ export const MainView = () => {
           {/* slices movies array in 4 and creates a col component */}
           {movies.slice(i, i + 4).map((movie) => (
             <Col key={movie._id} md={3}>
-              <MovieCard movieData={movie} />
+              <MovieCard
+                movieData={movie}
+                toggleFavorite={toggleFavorite}
+                favorites={favorites}
+              />
             </Col>
           ))}
         </Row>
@@ -165,7 +182,11 @@ export const MainView = () => {
                 <Col>No movies to display!</Col>
               ) : (
                 // routes to MovieView
-                <MovieView movieData={movies} /> // Pass movies as prop
+                <MovieView
+                  movieData={movies}
+                  toggleFavorite={toggleFavorite}
+                  favorites={favorites}
+                /> // Pass movies as prop
               )
             }
           />
@@ -181,6 +202,7 @@ export const MainView = () => {
                   user={user}
                   token={token}
                   setUser={setUser}
+                  favorites={favorites}
                 />
               )
             }

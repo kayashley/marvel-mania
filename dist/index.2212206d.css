@@ -90,27 +90,25 @@ img {
   box-shadow: 1px 1px 2px 3px #85848438;
 }
 
-.header-container {
-  grid-template-columns: 1fr auto;
+.detail-main {
   display: grid;
 }
 
-.detail-main {
+.header-main {
+  grid-template-columns: 1fr auto;
   display: grid;
 }
 
 .detail-title {
   font-family: Oswald, sans serif !important;
-  font-size: 56px !important;
+  font-size: 40px !important;
 }
 
-.back-button {
-  color: #f5f5f5;
-  cursor: pointer;
-  background-color: #1e90ff;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 12px;
+.addFav-btn {
+  background-color: #0000;
+  margin-left: 15px;
+  color: #751010fa !important;
+  font-size: 28px !important;
 }
 
 img {
@@ -253,9 +251,7 @@ img {
 .fav-container {
   color: #892a2a;
   text-align: center;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 40px auto 30px;
   font-family: Roboto Condensed;
 }
 
@@ -264,7 +260,8 @@ img {
 }
 
 .fav-body {
-  font-size: 20px;
+  color: #892a2a;
+  text-align: center;
 }
 
 @media (width <= 768px) {

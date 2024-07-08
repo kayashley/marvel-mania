@@ -81,7 +81,9 @@
 
 // FAVORITES
 .fav-container {
-  margin-top: 20px;
+  // border: 1px solid black;
+  margin-top: 40px;
+  margin-bottom: 30px;
   color: #892a2a;
   font-family: "Roboto Condensed";
   text-align: center;
@@ -94,7 +96,8 @@
 }
 
 .fav-body {
-  font-size: 20px;
+  color: #892a2a;
+  text-align: center;
 }
 
 // MINIMIZED
