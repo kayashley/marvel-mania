@@ -42,7 +42,10 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]); // movies is set to an array
   const [selectedMovie, setSelectedMovie] = useState(null); // selectedMovie is set to null
 
-  const [favorites, setFavorites] = useState([]); // sets favorites to an empty array
+  //  retrieve favorites from localStorage
+  const storedFavorites = localStorage.getItem("favorites"); // stores favorites value to storedFavorites
+  const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+  const [favorites, setFavorites] = useState(parsedFavorites); // sets favorites to an empty array
 
   // fetches api, promise
   useEffect(() => {
@@ -65,6 +68,11 @@ export const MainView = () => {
       });
     console.log("movies from api:", movies);
   }, [token]); // fetches whenever token changes
+
+  // save favorites to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   // toggles favorite movies
   const toggleFavorite = (movie) => {
@@ -203,6 +211,7 @@ export const MainView = () => {
                   token={token}
                   setUser={setUser}
                   favorites={favorites}
+                  toggleFavorite={toggleFavorite}
                 />
               )
             }

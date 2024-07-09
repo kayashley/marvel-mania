@@ -92,12 +92,34 @@
 }
 
 .fav-header {
-  font-size: 30px;
+  font-size: 36px;
 }
 
 .fav-body {
   color: #892a2a;
   text-align: center;
+}
+
+.title-container {
+  // border: 1px solid orange;
+  font-size: 30px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav-title {
+  // border: 1px solid green;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.remove-btn {
+  background: transparent;
+  font-size: 16px !important;
+  margin-left: auto;
 }
 
 // MINIMIZED

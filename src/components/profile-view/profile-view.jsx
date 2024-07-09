@@ -10,12 +10,24 @@ import { Link } from "react-router-dom";
 // importing scss
 import "./profile-view.scss";
 
-export const ProfileView = ({ movieData, user, token, setUser, favorites }) => {
+export const ProfileView = ({
+  user,
+  token,
+  setUser,
+  favorites,
+  toggleFavorite,
+}) => {
   const [username, setUsername] = useState(user.Username); // set username to user data
   const [password, setPassword] = useState(""); // set password to empty string
   const [email, setEmail] = useState(user.Email); // set email to user data
   const [birthday, setBirthday] = useState(user.Birthday); // set username to user data
   const [isFormVisible, setIsFormVisible] = useState(false); // sets isFormVisible to false
+
+  const removeFavorite = (e, movie) => {
+    // e.stopPropagation();
+    e.preventDefault();
+    toggleFavorite(movie); // toggles the favorite status
+  };
 
   // submits form
   const handleSubmit = (event) => {
@@ -67,29 +79,48 @@ export const ProfileView = ({ movieData, user, token, setUser, favorites }) => {
     setIsFormVisible(!isFormVisible);
   };
 
+  // renders users favorite movies
   const renderFavoriteMovies = () => {
-    return favorites.length > 0 ? (
-      favorites.map((movie) => (
-        <Col key={movie._id} md={3} className="mb-4">
-          <Card className="h-100 movie-card">
-            <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-              <Card.Img
-                className="w-100 movie-image"
-                variant="top"
-                src={movie.Image}
-              />
-              <Card.Body className="movie-body">
-                <Card.Title>
-                  <h4>{movie.Name}</h4>
-                </Card.Title>
-              </Card.Body>
-            </Link>
-          </Card>
-        </Col>
-      ))
-    ) : (
-      <Col className="fav-body">No favorite movies added!</Col>
-    );
+    if (favorites.length === 0) {
+      return <Col className="fav-body">No movies added to favorites!</Col>;
+    }
+
+    // Split the favorites array into chunks of 4
+    const rows = [];
+    for (let i = 0; i < favorites.length; i += 4) {
+      const chunk = favorites.slice(i, i + 4);
+      rows.push(
+        <Row key={i} className="mb-4">
+          {chunk.map((movie) => (
+            <Col key={movie._id} md={3} className="mb-4">
+              <Card className="h-100 movie-card">
+                <Card.Img
+                  className="w-100 movie-image"
+                  variant="top"
+                  src={movie.Image}
+                />
+                <Card.Body className="movie-body">
+                  <div className="title-container">
+                    <Card.Title className="fav-title">
+                      <h4>{movie.Name}</h4>
+                      <Button
+                        className="remove-btn"
+                        variant=""
+                        onClick={(e) => removeFavorite(e, movie)}
+                      >
+                        &times;
+                      </Button>
+                    </Card.Title>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      );
+    }
+
+    return rows;
   };
 
   return (
