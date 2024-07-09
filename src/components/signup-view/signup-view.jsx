@@ -1,18 +1,20 @@
 // ../signup-view/signup-view/jsx
 
-import { useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import { useState } from "react"; // importing useState
+import { Card, Form, Button } from "react-bootstrap"; // importing react-bootstrap
 
+// SignupView component allows user to create an account
 export const SignupView = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState(""); // username is set to an empty string
+  const [password, setPassword] = useState(""); // password is set to an empty string
+  const [email, setEmail] = useState(""); // email is set to an empty string
+  const [birthday, setBirthday] = useState(""); // birthday is set to an empty string
 
   // submit button function
   const handleSubmit = (e) => {
     e.preventDefault(); // prevents from refreshing
 
+    // creates signup object with user inputs
     const signupData = {
       Username: username,
       Password: password,
@@ -20,11 +22,13 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
+    // fetches a POST request to the api to create a new user
     fetch("https://mcumarvel-c028170c1f00.herokuapp.com/users/", {
       method: "POST",
       body: JSON.stringify(signupData),
       headers: { "Content-Type": "application/json" },
     }).then((response) => {
+      // checks if response is successful
       if (response.ok) {
         console.log(
           "Username:",

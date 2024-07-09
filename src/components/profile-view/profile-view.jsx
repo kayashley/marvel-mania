@@ -1,15 +1,11 @@
 // ../profile-view/profile-view.jsx
 
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; // importing PropTypes
+import { useState, useEffect } from "react"; // importing react bootstrap
+import { Row, Col, Card, Button, Form } from "react-bootstrap"; // importing react-bootstrap
+import "./profile-view.scss"; // importing scss
 
-// importing react bootstrap
-import { useState, useEffect } from "react";
-import { Row, Col, Card, Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
-// importing scss
-import "./profile-view.scss";
-
+// PropfileView component to display users account info and favorite movies
 export const ProfileView = ({
   user,
   token,
@@ -23,16 +19,17 @@ export const ProfileView = ({
   const [birthday, setBirthday] = useState(user.Birthday); // set username to user data
   const [isFormVisible, setIsFormVisible] = useState(false); // sets isFormVisible to false
 
+  // remove a favorite movie
   const removeFavorite = (e, movie) => {
-    // e.stopPropagation();
-    e.preventDefault();
-    toggleFavorite(movie); // toggles the favorite status
+    e.preventDefault(); // prevent reload of page
+    toggleFavorite(movie); // toggles the favorite status of movie
   };
 
   // submits form
   const handleSubmit = (event) => {
     event.preventDefault(); // prevents from reloading page
 
+    // creates an object with the updated user data
     const data = {
       Username: username,
       Email: email,
@@ -40,7 +37,7 @@ export const ProfileView = ({
     };
 
     if (password) {
-      data["Password"] = password;
+      data["Password"] = password; // add password if provided
     }
 
     // fetches user data from api
@@ -68,6 +65,7 @@ export const ProfileView = ({
 
       .then((data) => {
         if (data) {
+          // update local storage and state with new user data
           localStorage.setItem("user", JSON.stringify(data));
           setUser(data);
         }
@@ -81,11 +79,12 @@ export const ProfileView = ({
 
   // renders users favorite movies
   const renderFavoriteMovies = () => {
+    // if no movies are added, return message
     if (favorites.length === 0) {
       return <Col className="fav-body">No movies added to favorites!</Col>;
     }
 
-    // Split the favorites array into chunks of 4
+    // split the favorites array into sections of 4
     const rows = [];
     for (let i = 0; i < favorites.length; i += 4) {
       const chunk = favorites.slice(i, i + 4);
@@ -93,6 +92,7 @@ export const ProfileView = ({
         <Row key={i} className="mb-4">
           {chunk.map((movie) => (
             <Col key={movie._id} md={3} className="mb-4">
+              {/* movie card of favorite movie */}
               <Card className="h-100 movie-card">
                 <Card.Img
                   className="w-100 movie-image"
@@ -103,6 +103,7 @@ export const ProfileView = ({
                   <div className="title-container">
                     <Card.Title className="fav-title">
                       <h4>{movie.Name}</h4>
+                      {/* button to remove movie from favorites */}
                       <Button
                         className="remove-btn"
                         variant=""
@@ -120,7 +121,7 @@ export const ProfileView = ({
       );
     }
 
-    return rows;
+    return rows; // returns rows of favorite movies
   };
 
   return (
@@ -212,6 +213,7 @@ export const ProfileView = ({
                       required
                     />
                   </Form.Group>
+                  {/* button to submit form */}
                   <Button
                     id="update-btn"
                     className="form-btn"
@@ -227,6 +229,7 @@ export const ProfileView = ({
         </Col>
       </Row>
 
+      {/* users favorite movies */}
       <Row className="fav-container">
         <h3 className="fav-header">Favorite Movies</h3>
       </Row>
@@ -235,6 +238,7 @@ export const ProfileView = ({
   );
 };
 
+// PropTypes for ProfileView component
 ProfileView.propTypes = {
   movieData: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,

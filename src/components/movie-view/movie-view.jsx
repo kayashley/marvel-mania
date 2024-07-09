@@ -1,22 +1,24 @@
 // ../movie-view/movie-view.jsx
-import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
-import { Container, Row, Card, Button } from "react-bootstrap";
+import PropTypes from "prop-types"; // import PropTypes
+import { useParams } from "react-router-dom"; // import useParams
+import { Container, Row, Card, Button } from "react-bootstrap"; // importing react bootstrap
+import { Link } from "react-router-dom"; // import Link
+import "./movie-view.scss"; // import scss
 
-import { Link } from "react-router-dom";
-
-import "./movie-view.scss";
-
+// MovieView component to display details of each movie
 export const MovieView = ({ movieData, toggleFavorite, favorites }) => {
-  const { movieId } = useParams();
-  const movie = movieData.find((m) => m._id === movieId);
+  const { movieId } = useParams(); // get movieId from the url param
+  const movie = movieData.find((m) => m._id === movieId); // find the movie that matches the movieId
 
+  // if movie is not found, display message
   if (!movie) {
     return <div>Movie not found!</div>;
   }
 
+  // check if current movie is in favorites list
   const isFavorite = favorites.some((fav) => fav._id === movie._id);
 
+  // handle click event for the favorite button
   const handleFavoriteClick = () => {
     toggleFavorite(movie);
   };
@@ -43,31 +45,26 @@ export const MovieView = ({ movieData, toggleFavorite, favorites }) => {
                         onClick={handleFavoriteClick}
                         variant={isFavorite ? "" : ""}
                       >
+                        {/* favorite button, unicode heart */}
                         {isFavorite ? "\u2665" : "\u2661"}
                       </Button>
                     </Card.Title>
                   </div>
-
                   <Card.Text>
                     <em>{movie.Rating}</em>
                   </Card.Text>
-
                   <Card.Text>
                     <em>{movie.Runtime}</em>
                   </Card.Text>
                 </div>
               </Card.Header>
-
               <Card.Body>
                 <Card.Text>{movie.Synopsis}</Card.Text>
                 <Card.Text>DIRECTORS</Card.Text>
                 <Card.Text>GENRES</Card.Text>
               </Card.Body>
 
-              {/* <div className="fav-container">
-                      
-                    </div> */}
-
+              {/* back button to return to home page */}
               <Link to={`/`}>
                 <Button className="back-btn">Back</Button>
               </Link>
@@ -79,6 +76,7 @@ export const MovieView = ({ movieData, toggleFavorite, favorites }) => {
   );
 };
 
+// PropTypes for MovieView component
 MovieView.propTypes = {
   movieData: PropTypes.arrayOf(
     PropTypes.shape({

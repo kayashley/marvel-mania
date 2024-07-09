@@ -1,10 +1,10 @@
 // ../login-view/login-view.jsx
 
-import React, { useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import React, { useState } from "react"; // import useState
+import { Card, Form, Button } from "react-bootstrap"; // importing react-bootstrap
+import logo from "/img/hero.png"; // importing logo
 
-import logo from "/img/hero.png";
-
+// LoginView component allows user to login to their account
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState(""); // sets username to string
   const [password, setPassword] = useState(""); // sets password to string
@@ -12,11 +12,13 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevents from resending
 
+    // loginData, username and password
     const loginData = {
       Username: username,
       Password: password,
     };
 
+    // fetches POST request to login user
     fetch("https://mcumarvel-c028170c1f00.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify(loginData),
@@ -67,7 +69,7 @@ export const LoginView = ({ onLoggedIn }) => {
               className="form-field"
               type="text"
               value={username}
-              // listens for changes from the user onChange=
+              // listens for changes from the user
               onChange={(e) => setUsername(e.target.value)}
               required
               minLength={3}

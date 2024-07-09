@@ -1,9 +1,7 @@
 // ../move-card/movie-card.jsx
 // displays list of all movies in its own card
 
-import PropTypes from "prop-types";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import PropTypes from "prop-types"; // import PropTypes
 
 // importing react bootstrap
 import { Card, Button } from "react-bootstrap";
@@ -12,17 +10,18 @@ import { Link } from "react-router-dom"; // importing Link
 // import scss
 import "./movie-card.scss";
 
+// MovieCard component to display movie and handle favorite toggle
 export const MovieCard = ({ movieData, toggleFavorite, favorites = [] }) => {
-  const isFavorite = favorites.some((fav) => fav._id === movieData._id);
+  const isFavorite = favorites.some((fav) => fav._id === movieData._id); // check if the current movie is in the favorites list
 
-  // favorite movies
+  // handle click event for the favorite button
   const handleFavoriteClick = (e) => {
-    e.preventDefault();
-    console.log("favorite btn clicked");
+    e.preventDefault(); // prevents reload of page
     toggleFavorite(movieData);
   };
 
   return (
+    // display movies within cards
     <Card className="h-100 movie-card" style={{ cursor: "pointer" }}>
       <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
         <Card.Img
@@ -39,7 +38,7 @@ export const MovieCard = ({ movieData, toggleFavorite, favorites = [] }) => {
             onClick={handleFavoriteClick}
             variant="link"
           >
-            {/* unicode heart */}
+            {/* favorite button, unicode heart */}
             {isFavorite ? "\u2665" : "\u2661"}
           </Button>
         </Card.Body>
@@ -48,6 +47,7 @@ export const MovieCard = ({ movieData, toggleFavorite, favorites = [] }) => {
   );
 };
 
+// PropTypes for MovieCard component
 MovieCard.propTypes = {
   movieData: PropTypes.shape({
     _id: PropTypes.string.isRequired,

@@ -1,9 +1,7 @@
 // ../main-view/main-view.jsx - parent
 
 import { useEffect, useState } from "react"; // import useState from react
-
-// importing state-based router
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"; // importing state-based router
 
 // importing components
 import { MovieCard } from "../movie-card/movie-card"; // importing MovieCard
@@ -17,7 +15,7 @@ import { ProfileView } from "../profile-view/profile-view"; // importing Profile
 import { Row, Col } from "react-bootstrap";
 
 // export to import to other components
-// creates MainView component
+// MainView component to render all components
 export const MainView = () => {
   const storedUser = localStorage.getItem("user"); // stores localStorage value as the default for user from LoginView
   const storedToken = localStorage.getItem("token"); // stores localStorage value as the default for token from LoginView
@@ -40,12 +38,11 @@ export const MainView = () => {
   const [user, setUser] = useState(parsedUser); // user is set to parsedUser
   const [token, setToken] = useState(storedToken); // token is set to storedToken
   const [movies, setMovies] = useState([]); // movies is set to an array
-  const [selectedMovie, setSelectedMovie] = useState(null); // selectedMovie is set to null
 
-  //  retrieve favorites from localStorage
+  // retrieve favorites from localStorage
   const storedFavorites = localStorage.getItem("favorites"); // stores favorites value to storedFavorites
-  const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
-  const [favorites, setFavorites] = useState(parsedFavorites); // sets favorites to an empty array
+  const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : []; // parse storedFavorites if it exists, otherwise use an empty array
+  const [favorites, setFavorites] = useState(parsedFavorites); // sets favorites to parsedFavorites
 
   // fetches api, promise
   useEffect(() => {
@@ -76,10 +73,14 @@ export const MainView = () => {
 
   // toggles favorite movies
   const toggleFavorite = (movie) => {
+    // update state for favorite movies
     setFavorites((movies) => {
+      // check if selected movie is alreadt in the favorites list
       if (movies.find((fav) => fav._id === movie._id)) {
+        // if it is, remove it from the favorites list
         return movies.filter((fav) => fav._id !== movie._id);
       } else {
+        // if not, add to the favorites list
         return [...movies, movie];
       }
     });
