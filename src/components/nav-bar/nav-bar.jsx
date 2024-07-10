@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"; // importing state based router
 import logo from "/img/hero.png"; // impoting logo
 import "./nav-bar.scss"; // importing scss
 
-export const NavBar = ({ user, onLoggedOut }) => {
+export const NavBar = ({ user, onLoggedOut, onHomeClick }) => {
   return (
     <>
       <Navbar className="nav-main" bg="light" expand="lg">
@@ -32,7 +32,12 @@ export const NavBar = ({ user, onLoggedOut }) => {
                 )}
                 {user && (
                   <>
-                    <Nav.Link className="nav-link" as={Link} to="/">
+                    <Nav.Link
+                      className="nav-link"
+                      onClick={onHomeClick}
+                      as={Link}
+                      to="/"
+                    >
                       Home
                     </Nav.Link>
                     <Nav.Link className="nav-link" as={Link} to="/profile">

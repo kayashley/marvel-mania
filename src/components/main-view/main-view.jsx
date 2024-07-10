@@ -91,6 +91,10 @@ export const MainView = () => {
     console.log("filtered movies: ", filteredMovies(movies, search));
   }, [search, movies]);
 
+  const handleHomeClick = () => {
+    setSearch("");
+  };
+
   // toggles favorite movies
   const toggleFavorite = (movie) => {
     // update state for favorite movies
@@ -140,6 +144,7 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
+        onHomeClick={handleHomeClick}
       />
 
       {/* entire app is enveloped in a container in index.jsx */}
