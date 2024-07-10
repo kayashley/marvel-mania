@@ -27258,6 +27258,7 @@ var _loginView = require("../login-view/login-view"); // importing LoginView
 var _signupView = require("../signup-view/signup-view"); // importing SignupView
 var _navBar = require("../nav-bar/nav-bar"); // importing NavBar
 var _profileView = require("../profile-view/profile-view"); // importing ProfileView
+var _searchForm = require("../search-form/search-form"); // importing SearchForm
 // import react bootstrap
 var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
@@ -27279,6 +27280,9 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(parsedUser); // user is set to parsedUser
     const [token, setToken] = (0, _react.useState)(storedToken); // token is set to storedToken
     const [movies, setMovies] = (0, _react.useState)([]); // movies is set to an array
+    // initialize state variables for search feature
+    const [filterMovies, setfilterMovies] = (0, _react.useState)([]); // sets filterMovies to an empty array
+    const [search, setSearch] = (0, _react.useState)(""); // sets search to empty string
     // retrieve favorites from localStorage
     const storedFavorites = localStorage.getItem("favorites"); // stores favorites value to storedFavorites
     const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : []; // parse storedFavorites if it exists, otherwise use an empty array
@@ -27309,6 +27313,22 @@ const MainView = ()=>{
     }, [
         favorites
     ]);
+    // filters movies by title
+    const filteredMovies = (movies, search)=>{
+        return movies.filter((movie)=>{
+            return movie.Name.toLowerCase().includes(search.toLowerCase());
+        });
+    };
+    // filters movies
+    (0, _react.useEffect)(()=>{
+        console.log("Search term: ", search);
+        // update filteredMovies whenever the searh term or the movies list changes
+        setfilterMovies(filteredMovies(movies, search));
+        console.log("filtered movies: ", filteredMovies(movies, search));
+    }, [
+        search,
+        movies
+    ]);
     // toggles favorite movies
     const toggleFavorite = (movie)=>{
         // update state for favorite movies
@@ -27327,10 +27347,10 @@ const MainView = ()=>{
     const renderMovieRows = ()=>{
         const rows = []; // rows set to empty array
         // iterates through movies array in steps of 4
-        for(let i = 0; i < movies.length; i += 4)// constructs a new row component
+        for(let i = 0; i < filterMovies.length; i += 4)// constructs a new row component
         rows.push(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
             className: "mb-4",
-            children: movies.slice(i, i + 4).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+            children: filterMovies.slice(i, i + 4).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                     md: 3,
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                         movieData: movie,
@@ -27338,17 +27358,17 @@ const MainView = ()=>{
                         favorites: favorites
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 100,
+                        lineNumber: 120,
                         columnNumber: 15
                     }, undefined)
                 }, movie._id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 99,
+                    lineNumber: 119,
                     columnNumber: 13
                 }, undefined))
         }, i, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 96,
+            lineNumber: 116,
             columnNumber: 9
         }, undefined));
         return rows;
@@ -27365,7 +27385,7 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 116,
+                lineNumber: 136,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -27379,20 +27399,42 @@ const MainView = ()=>{
                                 replace: true
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 133,
+                                lineNumber: 154,
                                 columnNumber: 17
                             }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 children: "No movies to display!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 136,
+                                lineNumber: 157,
                                 columnNumber: 17
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: renderMovieRows()
-                            }, void 0, false)
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchForm.SearchForm), {
+                                                search: search,
+                                                handleOnChange: setSearch
+                                            }, void 0, false, {
+                                                fileName: "src/components/main-view/main-view.jsx",
+                                                lineNumber: 163,
+                                                columnNumber: 23
+                                            }, void 0)
+                                        }, void 0, false, {
+                                            fileName: "src/components/main-view/main-view.jsx",
+                                            lineNumber: 162,
+                                            columnNumber: 21
+                                        }, void 0)
+                                    }, void 0, false, {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 161,
+                                        columnNumber: 19
+                                    }, void 0),
+                                    renderMovieRows()
+                                ]
+                            }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 128,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27402,23 +27444,23 @@ const MainView = ()=>{
                                 to: "/"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 156,
+                                lineNumber: 178,
                                 columnNumber: 17
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 md: 5,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 159,
+                                    lineNumber: 181,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 158,
+                                lineNumber: 180,
                                 columnNumber: 17
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 151,
+                            lineNumber: 173,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27427,7 +27469,7 @@ const MainView = ()=>{
                                 to: "/"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 169,
+                                lineNumber: 191,
                                 columnNumber: 17
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 md: 5,
@@ -27438,17 +27480,17 @@ const MainView = ()=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 172,
+                                    lineNumber: 194,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 171,
+                                lineNumber: 193,
                                 columnNumber: 17
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 165,
+                            lineNumber: 187,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27459,13 +27501,13 @@ const MainView = ()=>{
                                 replace: true
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 188,
+                                lineNumber: 211,
                                 columnNumber: 17
                             }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 children: "No movies to display!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 191,
+                                lineNumber: 214,
                                 columnNumber: 17
                             }, void 0) : // routes to MovieView
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27474,12 +27516,12 @@ const MainView = ()=>{
                                 favorites: favorites
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 194,
+                                lineNumber: 217,
                                 columnNumber: 17
                             }, void 0) // Pass movies as prop
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 183,
+                            lineNumber: 206,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27489,7 +27531,7 @@ const MainView = ()=>{
                                 replace: true
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 207,
+                                lineNumber: 230,
                                 columnNumber: 17
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                 movieData: movies,
@@ -27500,33 +27542,33 @@ const MainView = ()=>{
                                 toggleFavorite: toggleFavorite
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 209,
+                                lineNumber: 232,
                                 columnNumber: 17
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 203,
+                            lineNumber: 226,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 126,
+                    lineNumber: 147,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 125,
+                lineNumber: 146,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 115,
+        lineNumber: 135,
         columnNumber: 5
     }, undefined));
 };
-_s(MainView, "idT3oTcFQjxhvKivL4xFVQ4soDs=");
+_s(MainView, "k03+Qi/RXIaVbQrQVK/mD9PdzPY=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27536,7 +27578,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","react-router-dom":"9xmpe","../nav-bar/nav-bar":"04Psr","../profile-view/profile-view":"2vVqf"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","react-router-dom":"9xmpe","../nav-bar/nav-bar":"04Psr","../profile-view/profile-view":"2vVqf","../search-form/search-form":"gOufr"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42638,6 +42680,8 @@ const NavBar = ({ user, onLoggedOut })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
             className: "nav-main",
+            bg: "light",
+            expand: "lg",
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
                 className: "nav-container",
                 children: [
@@ -42657,7 +42701,16 @@ const NavBar = ({ user, onLoggedOut })=>{
                         lineNumber: 14,
                         columnNumber: 11
                     }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
+                        className: "nav-toggle",
+                        "aria-controls": "basic-navbar-nav"
+                    }, void 0, false, {
+                        fileName: "src/components/nav-bar/nav-bar.jsx",
+                        lineNumber: 16,
+                        columnNumber: 11
+                    }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
+                        id: "basic-navbar-nav",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             className: "nav-menu",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
@@ -42672,7 +42725,7 @@ const NavBar = ({ user, onLoggedOut })=>{
                                                 children: "Login"
                                             }, void 0, false, {
                                                 fileName: "src/components/nav-bar/nav-bar.jsx",
-                                                lineNumber: 22,
+                                                lineNumber: 25,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -42682,7 +42735,7 @@ const NavBar = ({ user, onLoggedOut })=>{
                                                 children: "Signup"
                                             }, void 0, false, {
                                                 fileName: "src/components/nav-bar/nav-bar.jsx",
-                                                lineNumber: 25,
+                                                lineNumber: 28,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
@@ -42696,7 +42749,7 @@ const NavBar = ({ user, onLoggedOut })=>{
                                                 children: "Home"
                                             }, void 0, false, {
                                                 fileName: "src/components/nav-bar/nav-bar.jsx",
-                                                lineNumber: 32,
+                                                lineNumber: 35,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -42706,7 +42759,7 @@ const NavBar = ({ user, onLoggedOut })=>{
                                                 children: "Profile"
                                             }, void 0, false, {
                                                 fileName: "src/components/nav-bar/nav-bar.jsx",
-                                                lineNumber: 35,
+                                                lineNumber: 38,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -42715,7 +42768,7 @@ const NavBar = ({ user, onLoggedOut })=>{
                                                 children: "Logout"
                                             }, void 0, false, {
                                                 fileName: "src/components/nav-bar/nav-bar.jsx",
-                                                lineNumber: 38,
+                                                lineNumber: 41,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
@@ -42723,17 +42776,17 @@ const NavBar = ({ user, onLoggedOut })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/nav-bar/nav-bar.jsx",
-                                lineNumber: 19,
+                                lineNumber: 22,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/nav-bar/nav-bar.jsx",
-                            lineNumber: 18,
+                            lineNumber: 21,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/nav-bar/nav-bar.jsx",
-                        lineNumber: 17,
+                        lineNumber: 20,
                         columnNumber: 11
                     }, undefined)
                 ]
@@ -43251,6 +43304,50 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","react":"21dqq","./profile-view.scss":"eyKYH","prop-types":"7wKI2"}],"eyKYH":[function() {},{}],"lJZlQ":[function() {},{}]},["3SEkT","7mbnn","d8Dch"], "d8Dch", "parcelRequire5623")
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","react":"21dqq","./profile-view.scss":"eyKYH","prop-types":"7wKI2"}],"eyKYH":[function() {},{}],"gOufr":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$46c4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$46c4.prelude(module);
+
+try {
+// ../search-form/search-form.jsx
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SearchForm", ()=>SearchForm);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactBootstrap = require("react-bootstrap"); // importing Form
+var _searchFormScss = require("./search-form.scss"); // importing scss
+const SearchForm = ({ search, handleOnChange })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+        className: "search-form",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+            type: "text",
+            placeholder: "Search movies by title...",
+            value: search,
+            onChange: (e)=>{
+                handleOnChange(e.target.value);
+            }
+        }, void 0, false, {
+            fileName: "src/components/search-form/search-form.jsx",
+            lineNumber: 9,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/search-form/search-form.jsx",
+        lineNumber: 8,
+        columnNumber: 5
+    }, undefined);
+};
+_c = SearchForm;
+var _c;
+$RefreshReg$(_c, "SearchForm");
+
+  $parcel$ReactRefreshHelpers$46c4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","./search-form.scss":"4oEj6"}],"4oEj6":[function() {},{}],"lJZlQ":[function() {},{}]},["3SEkT","7mbnn","d8Dch"], "d8Dch", "parcelRequire5623")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

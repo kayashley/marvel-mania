@@ -4,21 +4,43 @@
 .nav-main {
   // border: 1px solid red !important;
   display: flex;
-  // padding-bottom: 20px;
   margin-bottom: 50px !important;
-}
+  background-color: white; // Ensure background color is applied to the entire navbar
 
-@media (max-width: 768px) {
-  .nav-container {
-    width: 100%;
-    // height: 100%;
+  // Ensure the navbar items align properly
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  // Styles for the toggle button (will be visible only on smaller screens)
+  .nav-toggle {
+    border: none;
+    background-color: transparent;
+    .navbar-toggler-icon {
+      background-image: url("https://cdn-icons-png.flaticon.com/512/9293/9293128.png"); // Customize the icon if needed
+    }
+
+    // Show toggle button only on small screens
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+
+  // Navbar Collapse is controlled by the toggle button
+  .navbar-collapse {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
   }
 }
 
 .nav-container {
   color: black !important;
-  // border: 1px solid blue;
   display: flex;
+  align-items: center; // Align items in the center
+  justify-content: space-between; // Distribute space between logo and nav links
+  width: 100%;
+  max-width: 1200px; // Optional: Set a max-width for better layout control
+  margin: 0 auto; // Center the container
 }
 
 .logo {
@@ -31,34 +53,34 @@
   font-size: 40px !important;
   color: #c2424b;
   font-family: "Oswald", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-}
-
-.nav-toggle {
-  width: 30px;
-  margin: 5px;
-  background: rgba(177, 174, 174, 0.23);
-  border: 1px solid rgba(104, 102, 102, 0.635);
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .nav-menu {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-family: "Oswald", "sans serif";
+  font-family: "Oswald", "sans-serif";
   font-weight: 200;
-
-  // border: 1px solid red;
-  width: 300px;
+  width: 100%;
   height: 100%;
 
-  position: absolute;
-  right: 0;
-  top: 0;
+  // Add this to ensure the menu displays correctly on smaller screens
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+
+    width: 100%; // Full width for the menu on small screens
+    background-color: transparent; // Background color for the dropdown menu
+    position: absolute;
+    // right: 0;
+    top: 100%; // Position below the navbar
+    padding: 1rem 0;
+    z-index: 1000; // Ensure the menu appears above other content
+    padding-left: 40px;
+  }
 }
 
 .nav-link {
@@ -66,9 +88,23 @@
   font-size: 20px;
   font-weight: 500;
   padding-right: 20px;
+  padding-left: 10px;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem; // Adjust padding for the menu items on small screens
+    text-align: left;
+    width: 100%; // Full width for each nav link on small screens
+  }
 }
 
 .nav-link:hover {
   cursor: pointer;
   color: rgb(43, 4, 4) !important;
+}
+
+// Additional styles to hide the menu on small screens and ensure the toggle button is functional
+@media (min-width: 769px) {
+  .navbar-collapse {
+    display: flex !important;
+  }
 }

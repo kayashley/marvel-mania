@@ -10,6 +10,7 @@ import { LoginView } from "../login-view/login-view"; // importing LoginView
 import { SignupView } from "../signup-view/signup-view"; // importing SignupView
 import { NavBar } from "../nav-bar/nav-bar"; // importing NavBar
 import { ProfileView } from "../profile-view/profile-view"; // importing ProfileView
+import { SearchForm } from "../search-form/search-form"; // importing SearchForm
 
 // import react bootstrap
 import { Row, Col } from "react-bootstrap";
@@ -38,6 +39,10 @@ export const MainView = () => {
   const [user, setUser] = useState(parsedUser); // user is set to parsedUser
   const [token, setToken] = useState(storedToken); // token is set to storedToken
   const [movies, setMovies] = useState([]); // movies is set to an array
+
+  // initialize state variables for search feature
+  const [filterMovies, setfilterMovies] = useState([]); // sets filterMovies to an empty array
+  const [search, setSearch] = useState(""); // sets search to empty string
 
   // retrieve favorites from localStorage
   const storedFavorites = localStorage.getItem("favorites"); // stores favorites value to storedFavorites
@@ -71,6 +76,21 @@ export const MainView = () => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
+  // filters movies by title
+  const filteredMovies = (movies, search) => {
+    return movies.filter((movie) => {
+      return movie.Name.toLowerCase().includes(search.toLowerCase());
+    });
+  };
+
+  // filters movies
+  useEffect(() => {
+    console.log("Search term: ", search);
+    // update filteredMovies whenever the searh term or the movies list changes
+    setfilterMovies(filteredMovies(movies, search));
+    console.log("filtered movies: ", filteredMovies(movies, search));
+  }, [search, movies]);
+
   // toggles favorite movies
   const toggleFavorite = (movie) => {
     // update state for favorite movies
@@ -90,12 +110,12 @@ export const MainView = () => {
   const renderMovieRows = () => {
     const rows = []; // rows set to empty array
     // iterates through movies array in steps of 4
-    for (let i = 0; i < movies.length; i += 4) {
+    for (let i = 0; i < filterMovies.length; i += 4) {
       // constructs a new row component
       rows.push(
         <Row key={i} className="mb-4">
           {/* slices movies array in 4 and creates a col component */}
-          {movies.slice(i, i + 4).map((movie) => (
+          {filterMovies.slice(i, i + 4).map((movie) => (
             <Col key={movie._id} md={3}>
               <MovieCard
                 movieData={movie}
@@ -121,6 +141,7 @@ export const MainView = () => {
           localStorage.clear();
         }}
       />
+
       {/* entire app is enveloped in a container in index.jsx */}
       <Row>
         <Routes>
@@ -136,13 +157,14 @@ export const MainView = () => {
                 <Col>No movies to display!</Col>
               ) : (
                 <>
+                  {/* search feature */}
+                  <Row>
+                    <Col>
+                      <SearchForm search={search} handleOnChange={setSearch} />
+                    </Col>
+                  </Row>
                   {/* renders 4 movies in rows */}
                   {renderMovieRows()}
-                  {/* {movies.map((movie) => (
-                    <Col className="mb-4" md={3} key={movie._id}>
-                      <MovieCard movieData={movie} />
-                    </Col>
-                  ))} */}
                 </>
               )
             }
@@ -179,6 +201,7 @@ export const MainView = () => {
               )
             }
           />
+
           {/* movie details route */}
           <Route
             path="/movies/:movieId"

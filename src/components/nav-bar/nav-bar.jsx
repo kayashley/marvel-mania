@@ -8,13 +8,16 @@ import "./nav-bar.scss"; // importing scss
 export const NavBar = ({ user, onLoggedOut }) => {
   return (
     <>
-      <Navbar className="nav-main">
+      <Navbar className="nav-main" bg="light" expand="lg">
         <Container className="nav-container">
           <img className="logo" src={logo} />
           <Navbar.Brand className="nav-header">MARVEL MANIA</Navbar.Brand>
 
-          {/* <Navbar.Toggle className="nav-toggle" aria-controls="basic-navbar-nav" /> */}
-          <Navbar.Collapse>
+          <Navbar.Toggle
+            className="nav-toggle"
+            aria-controls="basic-navbar-nav"
+          />
+          <Navbar.Collapse id="basic-navbar-nav">
             <div className="nav-menu">
               <Nav className="nav-links">
                 {!user && (
