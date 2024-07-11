@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"; // import useState
 import { Card, Form, Button } from "react-bootstrap"; // importing react-bootstrap
-import logo from "/img/hero.png"; // importing logo
+import logo from "/public/img/hero.jpg"; // importing logo
 
 // LoginView component allows user to login to their account
 export const LoginView = ({ onLoggedIn }) => {

@@ -1,4 +1,5 @@
 node_modules
 .cache
 .parcel-cache
-old.js
+.old.js
+.netlify.toml

@@ -2,7 +2,7 @@
 
 import { Navbar, Container, Nav } from "react-bootstrap"; // importing react bootstrap
 import { Link } from "react-router-dom"; // importing state based router
-import logo from "/src/img/hero.png"; // impoting logo
+import logo from "/public/img/hero.jpg";
 import "./nav-bar.scss"; // importing scss
 
 export const NavBar = ({ user, onLoggedOut, onHomeClick }) => {
@@ -10,7 +10,7 @@ export const NavBar = ({ user, onLoggedOut, onHomeClick }) => {
     <>
       <Navbar className="nav-main" bg="light" expand="lg">
         <Container className="nav-container">
-          <img className="logo" src={logo} />
+          <img className="logo" src={logo} alt="Logo" />
           <Navbar.Brand className="nav-header">MARVEL MANIA</Navbar.Brand>
 
           <Navbar.Toggle
