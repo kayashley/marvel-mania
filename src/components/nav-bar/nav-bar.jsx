@@ -2,7 +2,7 @@
 
 import { Navbar, Container, Nav } from "react-bootstrap"; // importing react bootstrap
 import { Link } from "react-router-dom"; // importing state based router
-import logo from "/src/img/hero.png"; // impoting logo
+import logo from "/img/hero.png"; // importing logo
 import "./nav-bar.scss"; // importing scss
 
 export const NavBar = ({ user, onLoggedOut, onHomeClick }) => {
