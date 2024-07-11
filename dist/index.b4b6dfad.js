@@ -42677,7 +42677,7 @@ parcelHelpers.export(exports, "NavBar", ()=>NavBar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap"); // importing react bootstrap
 var _reactRouterDom = require("react-router-dom"); // importing state based router
-var _heroPng = require("/src/img/hero.png"); // impoting logo
+var _heroPng = require("/img/hero.png"); // impoting logo
 var _heroPngDefault = parcelHelpers.interopDefault(_heroPng);
 var _navBarScss = require("./nav-bar.scss"); // importing scss
 const NavBar = ({ user, onLoggedOut, onHomeClick })=>{
@@ -42816,10 +42816,7 @@ $RefreshReg$(_c, "NavBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","./nav-bar.scss":"aUy9V","/src/img/hero.png":"gOnuR"}],"aUy9V":[function() {},{}],"gOnuR":[function(require,module,exports) {
-module.exports = require("bc94ac59ac972f79").getBundleURL("byUka") + "hero.f4c3abbf.png" + "?" + Date.now();
-
-},{"bc94ac59ac972f79":"gNAuw"}],"2vVqf":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"is3yI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lBbRR","./nav-bar.scss":"aUy9V","/img/hero.png":"elpMh"}],"aUy9V":[function() {},{}],"2vVqf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
