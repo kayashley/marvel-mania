@@ -67,7 +67,7 @@ Check out the API repository [here](https://github.com/kayashley/mcu-movie-app-a
 
 ## Contact
 
-for any questions or suggestions, please contact me:
+For any questions or suggestions, please contact me:
 
 - Name: Kayla Chan
 - Email: kayashchan@gmail.com
