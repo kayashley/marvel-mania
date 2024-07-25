@@ -12,7 +12,7 @@ export const MovieView = ({ movieData, toggleFavorite, favorites }) => {
 
   // if movie is not found, display message
   if (!movie) {
-    return <div>Movie not found!</div>;
+    return <div className="no-movie">Movie not found!</div>;
   }
 
   // check if current movie is in favorites list
@@ -22,6 +22,9 @@ export const MovieView = ({ movieData, toggleFavorite, favorites }) => {
   const handleFavoriteClick = () => {
     toggleFavorite(movie);
   };
+
+  console.log("Directors:", movie.Directors);
+  console.log("Genres:", movie.Genres);
 
   return (
     <>
@@ -53,15 +56,24 @@ export const MovieView = ({ movieData, toggleFavorite, favorites }) => {
                   <Card.Text>
                     <em>{movie.Rating}</em>
                   </Card.Text>
+                </div>
+
+                <div className="movie-details">
                   <Card.Text>
                     <em>{movie.Runtime}</em>
+                  </Card.Text>
+                  <Card.Text>{movie.ReleaseDate}</Card.Text>
+                  <Card.Text className="movie-details">
+                    Directed by: {movie.MovieDirector}
                   </Card.Text>
                 </div>
               </Card.Header>
               <Card.Body>
                 <Card.Text>{movie.Synopsis}</Card.Text>
-                <Card.Text>DIRECTORS</Card.Text>
-                <Card.Text>GENRES</Card.Text>
+
+                <Card.Text className="movie-details">
+                  <em>{movie.MovieGenre}</em>
+                </Card.Text>
               </Card.Body>
 
               {/* back button to return to home page */}
@@ -83,13 +95,21 @@ MovieView.propTypes = {
       _id: PropTypes.string.isRequired,
       Name: PropTypes.string.isRequired,
       Image: PropTypes.string.isRequired,
-      Description: PropTypes.string,
-      Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }),
-      Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }),
+      Synopsis: PropTypes.string.isRequired,
+      Directors: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          Name: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+      Genres: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          Name: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+      Rating: PropTypes.string.isRequired,
+      Runtime: PropTypes.string.isRequired,
     })
   ).isRequired,
   toggleFavorite: PropTypes.func.isRequired,

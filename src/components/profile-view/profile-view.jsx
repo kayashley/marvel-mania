@@ -147,13 +147,15 @@ export const ProfileView = ({
                 <strong>Birthday: </strong>
                 {new Date(user.Birthday).toISOString().slice(0, 10)}
               </Card.Text>
-              <Button
-                className="form-btn"
-                variant=""
-                onClick={toggleFormVisibility}
-              >
-                Edit Profile
-              </Button>
+              <div className="btn-container">
+                <Button
+                  className="form-btn"
+                  variant=""
+                  onClick={toggleFormVisibility}
+                >
+                  Edit Profile
+                </Button>
+              </div>
             </Card.Body>
           </Card>
 
